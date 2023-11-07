@@ -20,5 +20,5 @@ vis_backends = [dict(type='LocalVisBackend')]
 visualizer = dict(type='ActionVisualizer', vis_backends=vis_backends)
 
 log_level = 'INFO'
-load_from = None
+load_from = "https://download.openmmlab.com/mmaction/v1.0/recognition/slowfast/slowfast_r50_8xb8-4x16x1-256e_kinetics400-rgb/slowfast_r50_8xb8-4x16x1-256e_kinetics400-rgb_20220901-701b0f6f.pth"
 resume = False
