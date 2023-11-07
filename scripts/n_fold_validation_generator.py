@@ -8,8 +8,8 @@ import copy
 folds_number = 10
 annotations = []
 
-base_path = "D:\\Kimia's Project - HH Experiments Recordings"
-labels_path = ".\\labels.csv"
+base_path = "/cluster/home/t125959uhn/Data/Kimia'sProject-HHExperimentsRecordings_compressed"
+labels_path = "labels.csv"
 folds_path = os.path.join(base_path, "folds")
 
 full_annotation_path = os.path.join(base_path, "full_annotation.csv")

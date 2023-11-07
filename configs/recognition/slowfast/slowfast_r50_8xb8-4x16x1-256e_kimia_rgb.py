@@ -10,11 +10,11 @@ model = dict(
         ))
 
 dataset_type = 'VideoDataset'
-data_root = "D:\\Kimia'sProject-HHExperimentsRecordings"
-data_root_val = "D:\\Kimia'sProject-HHExperimentsRecordings"
-ann_file_train = "D:\\Kimia'sProject-HHExperimentsRecordings\\folds\\1\\train.txt"
-ann_file_val = "D:\\Kimia'sProject-HHExperimentsRecordings\\folds\\1\\val.txt"
-ann_file_test = "D:\\Kimia'sProject-HHExperimentsRecordings\\folds\\1\\test.txt"
+data_root = "/cluster/home/t125959uhn/Data/Kimia'sProject-HHExperimentsRecordings_compressed"
+data_root_val = "/cluster/home/t125959uhn/Data/Kimia'sProject-HHExperimentsRecordings_compressed"
+ann_file_train = "/cluster/home/t125959uhn/Data/Kimia'sProject-HHExperimentsRecordings_compressed/folds/1/train.txt"
+ann_file_val = "/cluster/home/t125959uhn/Data/Kimia'sProject-HHExperimentsRecordings_compressed/folds/1/val.txt"
+ann_file_test = "/cluster/home/t125959uhn/Data/Kimia'sProject-HHExperimentsRecordings_compressed/folds/1/test.txt"
 
 file_client_args = dict(io_backend='disk')
 train_pipeline = [
