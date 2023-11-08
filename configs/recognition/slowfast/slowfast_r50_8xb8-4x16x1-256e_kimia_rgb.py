@@ -19,7 +19,7 @@ ann_file_test = "/cluster/home/t125959uhn/Data/Kimia'sProject-HHExperimentsRecor
 file_client_args = dict(io_backend='disk')
 train_pipeline = [
     dict(type='DecordInit', **file_client_args),
-    dict(type='SampleFrames', clip_len=32, frame_interval=2, num_clips=1),
+    dict(type='SampleFrames', clip_len=64, frame_interval=3, num_clips=3),
     dict(type='DecordDecode'),
     dict(type='Resize', scale=(-1, 256)),
     dict(type='RandomResizedCrop'),
@@ -32,9 +32,9 @@ val_pipeline = [
     dict(type='DecordInit', **file_client_args),
     dict(
         type='SampleFrames',
-        clip_len=32,
-        frame_interval=2,
-        num_clips=1,
+        clip_len=64,
+        frame_interval=3,
+        num_clips=3,
         test_mode=True),
     dict(type='DecordDecode'),
     dict(type='Resize', scale=(-1, 256)),
@@ -46,8 +46,8 @@ test_pipeline = [
     dict(type='DecordInit', **file_client_args),
     dict(
         type='SampleFrames',
-        clip_len=32,
-        frame_interval=2,
+        clip_len=64,
+        frame_interval=3,
         num_clips=10,
         test_mode=True),
     dict(type='DecordDecode'),
@@ -93,7 +93,7 @@ val_evaluator = dict(type='AccMetric')
 test_evaluator = val_evaluator
 
 train_cfg = dict(
-    type='EpochBasedTrainLoop', max_epochs=50, val_begin=1, val_interval=5)
+    type='EpochBasedTrainLoop', max_epochs=100, val_begin=1, val_interval=3)
 val_cfg = dict(type='ValLoop')
 test_cfg = dict(type='TestLoop')
 
