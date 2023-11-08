@@ -19,7 +19,7 @@ ann_file_test = "/cluster/home/t125959uhn/Data/Kimia'sProject-HHExperimentsRecor
 file_client_args = dict(io_backend='disk')
 train_pipeline = [
     dict(type='DecordInit', **file_client_args),
-    dict(type='SampleFrames', clip_len=32, frame_interval=4, num_clips=3),
+    dict(type='SampleFrames', clip_len=32, frame_interval=10, num_clips=1),
     dict(type='DecordDecode'),
     dict(type='Resize', scale=(-1, 256)),
     dict(type='RandomResizedCrop'),
@@ -33,8 +33,8 @@ val_pipeline = [
     dict(
         type='SampleFrames',
         clip_len=32,
-        frame_interval=4,
-        num_clips=3,
+        frame_interval=10,
+        num_clips=1,
         test_mode=True),
     dict(type='DecordDecode'),
     dict(type='Resize', scale=(-1, 256)),
@@ -47,7 +47,7 @@ test_pipeline = [
     dict(
         type='SampleFrames',
         clip_len=32,
-        frame_interval=4,
+        frame_interval=10,
         num_clips=10,
         test_mode=True),
     dict(type='DecordDecode'),
