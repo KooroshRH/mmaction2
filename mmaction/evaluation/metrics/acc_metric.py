@@ -196,7 +196,7 @@ class AccMetric(BaseMetric):
 
         return eval_results
     
-    def calculate_f1_score(confusion_matrix):
+    def calculate_f1_score(self, confusion_matrix):
         # Calculate precision, recall, and F1 score for each class
         precision = torch.diag(confusion_matrix) / confusion_matrix.sum(dim=0)
         recall = torch.diag(confusion_matrix) / confusion_matrix.sum(dim=1)
