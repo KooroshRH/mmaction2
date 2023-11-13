@@ -20,7 +20,7 @@ def write_to_txt(data, fold_number, name):
     if not os.path.exists(base_fold_path): os.mkdir(base_fold_path)
     fold_file = open(fold_path, 'w')
     for row_index in range(len(data) - 1):
-        fold_file.write(data[row_index][0].replace("\\", "/") + " " + data[row_index][1])
+        fold_file.write(data[row_index][0].replace("\\", "/").replace("./", "").replace("MP4", "mp4") + " " + data[row_index][1])
         if row_index != len(data) - 1: fold_file.write('\n')
     fold_file.close()
 
