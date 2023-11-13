@@ -32,7 +32,7 @@ val_pipeline = [
     dict(type='DecordInit', **file_client_args),
     dict(
         type='SampleFrames',
-        clip_len=50,
+        clip_len=32,
         frame_interval=10,
         num_clips=1,
         test_mode=True),
@@ -46,7 +46,7 @@ test_pipeline = [
     dict(type='DecordInit', **file_client_args),
     dict(
         type='SampleFrames',
-        clip_len=50,
+        clip_len=32,
         frame_interval=10,
         num_clips=10,
         test_mode=True),
