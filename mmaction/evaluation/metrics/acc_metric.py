@@ -11,7 +11,7 @@ from mmengine.evaluator import BaseMetric
 
 from mmaction.evaluation import (get_weighted_score, mean_average_precision,
                                  mean_class_accuracy,
-                                 mmit_mean_average_precision, top_k_accuracy)
+                                 mmit_mean_average_precision, top_k_accuracy, ConfusionMatrix)
 from mmaction.registry import METRICS
 
 
@@ -189,7 +189,29 @@ class AccMetric(BaseMetric):
                     mAP = mmit_mean_average_precision(preds, labels)
                     eval_results['mmit_mean_average_precision'] = mAP
 
+        conf_mat = ConfusionMatrix.calculate(preds, labels, num_classes=30)
+        print(conf_mat)
+
+        eval_results['f1-score'] = self.calculate_f1_score(conf_mat)
+
         return eval_results
+    
+    def calculate_f1_score(confusion_matrix):
+        # Calculate precision, recall, and F1 score for each class
+        precision = torch.diag(confusion_matrix) / confusion_matrix.sum(dim=0)
+        recall = torch.diag(confusion_matrix) / confusion_matrix.sum(dim=1)
+
+        # Handle cases where precision or recall is zero to avoid division by zero
+        precision[torch.isnan(precision)] = 0
+        recall[torch.isnan(recall)] = 0
+
+        # Calculate F1 score
+        f1 = 2 * (precision * recall) / (precision + recall)
+        
+        # Average F1 score across all classes
+        average_f1 = f1.mean().item()
+
+        return average_f1
 
 
 @METRICS.register_module()
