@@ -11,7 +11,8 @@ from mmengine.evaluator import BaseMetric
 
 from mmaction.evaluation import (get_weighted_score, mean_average_precision,
                                  mean_class_accuracy,
-                                 mmit_mean_average_precision, top_k_accuracy, ConfusionMatrix)
+                                 mmit_mean_average_precision, top_k_accuracy)
+from mmaction.evaluation import ConfusionMatrix
 from mmaction.registry import METRICS
 
 
