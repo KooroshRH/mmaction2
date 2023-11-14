@@ -192,12 +192,15 @@ class AccMetric(BaseMetric):
         conf_mat = ConfusionMatrix.calculate(preds, labels, num_classes=30)
         print(conf_mat)
 
-        eval_results['f1-score'] = self.calculate_f1_score(conf_mat)
+        eval_results['f1_score'] = self.calculate_f1_score(conf_mat)
 
         return eval_results
     
     def calculate_f1_score(self, confusion_matrix):
         # Calculate precision, recall, and F1 score for each class
+        print(torch.diag(confusion_matrix))
+        print(confusion_matrix.sum(dim=0))
+        print(confusion_matrix.sum(dim=1))
         precision = torch.diag(confusion_matrix) / confusion_matrix.sum(dim=0)
         recall = torch.diag(confusion_matrix) / confusion_matrix.sum(dim=1)
 
@@ -205,8 +208,13 @@ class AccMetric(BaseMetric):
         precision[torch.isnan(precision)] = 0
         recall[torch.isnan(recall)] = 0
 
+        print(precision)
+        print(recall)
+
         # Calculate F1 score
         f1 = 2 * (precision * recall) / (precision + recall)
+
+        print(f1)
         
         # Average F1 score across all classes
         average_f1 = f1.mean().item()
