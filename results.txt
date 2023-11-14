@@ -1,3 +1,2 @@
-fold-1 len=32 interval=10 batch=8 epoch=? top1=0.8125 top5=1 mean=0.7667
-fold-1 len=16 interval=10 batch=8 epoch=60 top1=0.6667 top5=0.9896 mean=0.6697
+fold-1 len=32 interval=10 batch=8 epoch=? top1=0.8125 top5=1 mean=0.7667 f1_score=>0.6<=0.7
 fold-1 len=64 interval=10 batch=8 epoch= top1= top5=
