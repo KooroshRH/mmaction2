@@ -1,3 +1,7 @@
 fold-1 len=32 interval=10 batch=8 epoch=? top1=0.8125 top5=1 mean=0.7667 f1_score=>0.6<=0.7
-fold-1 len=32 interval=20 batch=8 epoch= top1= top5= mean= f1_score=
-fold-1 len=64 interval=10 batch=8 epoch= top1= top5=
+fold-1 len=32 interval=20 batch=8 epoch=57 top1=0.8750 top5=1 mean=0.9020 f1_score=0.7293
+fold-1 len=32 interval=30 batch=8 epoch= top1= top5= mean= f1_score=
+fold-1 len=64 interval=5 batch=8 epoch=96 top1=0.9062 top5=1 mean=0.8457 f1_score=0.7565
+fold-1 len=64 interval=10 batch=8 epoch=57 top1=0.8750 top5=1 mean=0.8718 f1_score=0.7609
+fold-1 len=64 interval=20 batch=8 epoch=39 top1=0.8021 top5=1 mean=0.7284 f1_score=0.6334
+fold-1 len=64 interval=30 batch=8 epoch=30 top1=0.8125 top5=0.9896 mean=0.7973 f1_score=0.6415
