@@ -45,3 +45,33 @@ fold-1 len=64 interval=5 batch=16 epoch=66 top1=0.9062 top5=1 mean=0.8833 f1_sco
 3070v1 len=16 interval=40 batch=8 epoch=99 top1=0.9210 top5=0.9966 mean=0.9014 f1_score=0.8630
 3070v2 len=16 interval=40 batch=8 epoch=84 top1=0.8763 top5=0.9931 mean=0.8589 f1_score=0.8157
 3070v3 len=16 interval=40 batch=8 epoch=96 top1=0.9244 top5=0.9931 mean=0.9117 f1_score=0.8662
+
+3070v1 len=32 interval=5 batch=8 epoch=81 top1=0.7938 top5=1 mean=0.7341 f1_score=0.6809
+3070v2 len=32 interval=5 batch=8 epoch=87 top1=0.7595 top5=0.9759 mean=0.7331 f1_score=0.6673
+3070v3 len=32 interval=5 batch=8 epoch=93 top1=0.8007 top5=0.9863 mean=0.7368 f1_score=0.6855
+
+3070v1 len=32 interval=10 batch=8 epoch=99 top1=0.9038 top5=1 mean=0.8790 f1_score=0.8376
+3070v2 len=32 interval=10 batch=8 epoch=96 top1=0.8694 top5=0.9931 mean=0.8391 f1_score=0.8075
+3070v3 len=32 interval=10 batch=8 epoch=99 top1=0.8832 top5=0.9966 mean=0.8530 f1_score=0.8088
+
+3070v1 len=32 interval=10 batch=16 epoch=96 top1=0.9107 top5=0.9966 mean=0.8793 f1_score=0.8427
+3070v2 len=32 interval=10 batch=16 epoch=84 top1=0.8900 top5=0.9931 mean=0.8685 f1_score=0.8307
+3070v3 len=32 interval=10 batch=16 epoch=99 top1=0.8866 top5=1 mean=0.8504 f1_score=0.8003
+
+3070v1 len=32 interval=20 batch=8 epoch=93 top1=0.9347 top5=0.9966 mean=0.9197 f1_score=0.8820
+3070v2 len=32 interval=20 batch=8 epoch=90 top1=0.9038 top5=0.9863 mean=0.8942 f1_score=0.8520
+3070v3 len=32 interval=20 batch=8 epoch=51 top1=0.9278 top5=0.9897 mean=0.9093 f1_score=0.8663
+
+3070v1 len=32 interval=20 batch=16 epoch=78 top1=0.9416 top5=0.9966 mean=0.9294 f1_score=0.8910
+3070v2 len=32 interval=20 batch=16 epoch=90 top1=0.8900 top5=0.9931 mean=0.8750 f1_score=0.8341
+3070v3 len=32 interval=20 batch=16 epoch=87 top1=0.9278 top5=0.9931 mean=0.9117 f1_score=0.8611
+
+3070v1 len=32 interval=30 batch=8 epoch=63 top1=0.9175 top5=0.9966 mean=0.9014 f1_score=0.8617
+3070v2 len=32 interval=30 batch=8 epoch=51 top1=0.8625 top5=0.9931 mean=0.8403 f1_score=0.7937
+3070v3 len=32 interval=30 batch=8 epoch=75 top1=0.8935 top5=0.9931 mean=0.8771 f1_score=0.8316
+
+
+
+3070v1 len= interval= batch= epoch= top1= top5= mean= f1_score=
+3070v2 len= interval= batch= epoch= top1= top5= mean= f1_score=
+3070v3 len= interval= batch= epoch= top1= top5= mean= f1_score=
