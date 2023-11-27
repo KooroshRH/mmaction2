@@ -58,6 +58,10 @@ fold-1 len=64 interval=5 batch=16 epoch=66 top1=0.9062 top5=1 mean=0.8833 f1_sco
 3070v2 len=32 interval=10 batch=16 epoch=84 top1=0.8900 top5=0.9931 mean=0.8685 f1_score=0.8307
 3070v3 len=32 interval=10 batch=16 epoch=99 top1=0.8866 top5=1 mean=0.8504 f1_score=0.8003
 
+3070v1 len=32 interval=10 batch=32 epoch=87 top1=0.8900 top5=1 mean=0.8571 f1_score=0.8167
+3070v2 len=32 interval=10 batch=32 epoch=99 top1=0.8729 top5=0.9966 mean=0.8618 f1_score=0.8178
+3070v3 len=32 interval=10 batch=32 epoch=84 top1=0.8660 top5=0.9966 mean=0.8332 f1_score=0.7884
+
 3070v1 len=32 interval=20 batch=8 epoch=93 top1=0.9347 top5=0.9966 mean=0.9197 f1_score=0.8820
 3070v2 len=32 interval=20 batch=8 epoch=90 top1=0.9038 top5=0.9863 mean=0.8942 f1_score=0.8520
 3070v3 len=32 interval=20 batch=8 epoch=51 top1=0.9278 top5=0.9897 mean=0.9093 f1_score=0.8663
@@ -66,11 +70,25 @@ fold-1 len=64 interval=5 batch=16 epoch=66 top1=0.9062 top5=1 mean=0.8833 f1_sco
 3070v2 len=32 interval=20 batch=16 epoch=90 top1=0.8900 top5=0.9931 mean=0.8750 f1_score=0.8341
 3070v3 len=32 interval=20 batch=16 epoch=87 top1=0.9278 top5=0.9931 mean=0.9117 f1_score=0.8611
 
+3070v1 len=32 interval=20 batch=32 epoch=69 top1=0.9244 top5=1 mean=0.8960 f1_score=0.8663
+3070v2 len=32 interval=20 batch=32 epoch=69 top1=0.8625 top5=0.9931 mean=0.8455 f1_score=0.8014
+3070v3 len=32 interval=20 batch=32 epoch=66 top1=0.8763 top5=0.9931 mean=0.8401 f1_score=0.7970
+
 3070v1 len=32 interval=30 batch=8 epoch=63 top1=0.9175 top5=0.9966 mean=0.9014 f1_score=0.8617
 3070v2 len=32 interval=30 batch=8 epoch=51 top1=0.8625 top5=0.9931 mean=0.8403 f1_score=0.7937
 3070v3 len=32 interval=30 batch=8 epoch=75 top1=0.8935 top5=0.9931 mean=0.8771 f1_score=0.8316
 
+3070v1 len=64 interval=5 batch=8 epoch=69 top1=0.8969 top5=0.9966 mean=0.8714 f1_score=0.8258
+3070v2 len=64 interval=5 batch=8 epoch=81 top1=0.8694 top5=0.9828 mean=0.8601 f1_score=0.8131
+3070v3 len=64 interval=5 batch=8 epoch=84 top1=0.8832 top5=1 mean=0.8584 f1_score=0.8156
 
+3070v1 len=64 interval=10 batch=8 epoch=48 top1=0.9107 top5=0.9966 mean=0.8873 f1_score=0.8385
+3070v2 len=64 interval=10 batch=8 epoch=51 top1=0.8488 top5=0.9897 mean=0.8199 f1_score=0.7760
+3070v3 len=64 interval=10 batch=8 epoch=60 top1=0.9381 top5=1 mean=0.9124 f1_score=0.8748
+
+3070v1 len=64 interval=20 batch=8 epoch=36 top1=0.8591 top5=0.9897 mean=0.8212 f1_score=0.7796
+3070v2 len=64 interval=20 batch=8 epoch=39 top1=0.8076 top5=0.9863 mean=0.7594 f1_score=0.7155
+3070v3 len=64 interval=20 batch=8 epoch=39 top1=0.8591 top5=1 mean=0.8286 f1_score=0.7742
 
 3070v1 len= interval= batch= epoch= top1= top5= mean= f1_score=
 3070v2 len= interval= batch= epoch= top1= top5= mean= f1_score=
