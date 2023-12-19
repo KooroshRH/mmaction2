@@ -119,4 +119,4 @@ param_scheduler = [
 ]
 
 default_hooks = dict(
-    checkpoint=dict(interval=4, max_keep_ckpts=3), logger=dict(interval=100))
+    checkpoint=dict(interval=4, max_keep_ckpts=1), logger=dict(interval=100))
