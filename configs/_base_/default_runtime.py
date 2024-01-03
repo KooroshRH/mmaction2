@@ -20,5 +20,5 @@ vis_backends = [dict(type='LocalVisBackend')]
 visualizer = dict(type='ActionVisualizer', vis_backends=vis_backends)
 
 log_level = 'INFO'
-load_from = "/cluster/home/t125959uhn/mmaction2/checkpoints/slowfast_r101_8xb8-8x8x1-256e_kinetics400-rgb_20220818-9c0e09bd.pth"
+load_from = "/cluster/home/t125959uhn/mmaction2/checkpoints/slowfast_r101-r50_32xb8-4x16x1-256e_kinetics400-rgb_20220901-a77ac3ee.pth"
 resume = False
