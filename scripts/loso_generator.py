@@ -34,13 +34,21 @@ if __name__ == "__main__":
         annotations.append((row[0], row[1], row[3]))
         if not row[3] in subjects: subjects.append(row[3])
     full_annotation_file.close()
-
-    print(subjects)
     
     if os.path.exists(folds_path):
         shutil.rmtree(folds_path)
 
     os.mkdir(folds_path)
 
-    for index, subjects in enumerate(subjects):
-        pass
+    for index, subject in enumerate(subjects):
+        train_list = []
+        test_list = []
+
+        for annotation in annotations:
+            if annotation[2] == subject:
+                test_list.append(annotation)
+            else:
+                train_list.append(annotation)
+
+        write_to_txt(test_list, index + 1, 'test')
+        write_to_txt(train_list, index + 1, 'train')
