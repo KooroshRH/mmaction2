@@ -821,6 +821,69 @@ class JointToBone(BaseTransform):
                     f'target={self.target})')
         return repr_str
 
+@TRANSFORMS.register_module()
+class BoneToAngle:
+    """Calculate the angles between bones in 3D space.
+
+    Args:
+        bone_pairs (List[Tuple[int, int]]): Define the pairs of bones to calculate the angles between.
+
+    Methods:
+        transform(results: Dict) -> Dict: Transform the bone information to angle information.
+    """
+
+    def __init__(self, 
+                 dataset: str = 'nturgb+d', 
+                 target: str = 'keypoint'):
+        self.bone_pairs = [(1, 2),  # Neck and Right Shoulder
+                        (1, 4),  # Neck and Left Shoulder
+                        (2, 3),  # Right Shoulder and Right Elbow
+                        (4, 5),  # Left Shoulder and Left Elbow
+                        (3, 6),  # Right Elbow and Right Wrist
+                        (5, 7),  # Left Elbow and Left Wrist
+                        (2, 20), # Right Shoulder and Spine
+                        (4, 20), # Left Shoulder and Spine
+                        (20, 8), # Spine and Right Hip
+                        (20, 9), # Spine and Left Hip
+                        (8, 9),  # Right Hip and Right Knee
+                        (9, 10), # Left Hip and Left Knee
+                        (10, 11),# Right Knee and Right Ankle
+                        (11, 12),# Left Knee and Left Ankle
+                        (8, 11), # Right Hip and Right Foot
+                        (9, 12)] # Left Hip and Left Foot
+        self.target = target
+        self.dataset = dataset
+
+    def transform(self, results: Dict) -> Dict:
+        """The transform function of :class:`BoneToAngle`.
+
+        Args:
+            results (dict): The result dict containing bone information.
+
+        Returns:
+            dict: The result dict with angle information.
+        """
+        bone = results['b']
+        M, T, V, C = bone.shape
+        angle = np.zeros((M, T, len(self.bone_pairs), 3), dtype=np.float32)
+
+        for i, (b1, b2) in enumerate(self.bone_pairs):
+            vec1 = bone[..., b1, :]
+            vec2 = bone[..., b2, :]
+            dot_product = np.sum(vec1 * vec2, axis=-1)
+            norm_vec1 = np.linalg.norm(vec1, axis=-1)
+            norm_vec2 = np.linalg.norm(vec2, axis=-1)
+            cos_angle = dot_product / (norm_vec1 * norm_vec2 + 1e-8)
+
+            angle[..., i, :] = np.arccos(np.clip(cos_angle, -1.0, 1.0))
+
+        results[self.target] = angle
+        return results
+
+    def __repr__(self) -> str:
+        repr_str = (f'{self.__class__.__name__}('
+                    f'bone_pairs={self.bone_pairs})')
+        return repr_str
 
 @TRANSFORMS.register_module()
 class ToMotion(BaseTransform):
@@ -956,11 +1019,18 @@ class GenSkeFeat(BaseTransform):
         ops = []
         if 'b' in feats or 'bm' in feats:
             ops.append(JointToBone(dataset=dataset, target='b'))
+        if 'ba' in feats or 'bam' in feats:
+            ops.append(BoneToAngle(dataset=dataset, target='ba'))
+
         ops.append(KeyMapper(remapping={'keypoint': 'j'}))
+
         if 'jm' in feats:
             ops.append(ToMotion(dataset=dataset, source='j', target='jm'))
         if 'bm' in feats:
             ops.append(ToMotion(dataset=dataset, source='b', target='bm'))
+        if 'bam' in feats:
+            ops.append(ToMotion(dataset=dataset, source='ba', target='bam'))
+
         ops.append(MergeSkeFeat(feat_list=feats, axis=axis))
         self.ops = Compose(ops)
 
