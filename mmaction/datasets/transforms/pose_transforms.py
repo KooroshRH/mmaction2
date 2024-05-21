@@ -822,7 +822,7 @@ class JointToBone(BaseTransform):
         return repr_str
 
 @TRANSFORMS.register_module()
-class BoneToAngle:
+class BoneToAngle(BaseTransform):
     """Calculate the angles between bones in 3D space.
 
     Args:
