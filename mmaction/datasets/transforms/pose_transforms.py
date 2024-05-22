@@ -832,7 +832,7 @@ class BoneToAngle(BaseTransform):
     Methods:
         transform(results: Dict) -> Dict: Transform the bone information to angle information.
     """
-    def cross_product_matrix(vector):
+    def cross_product_matrix(self, vector):
         return np.array([[0, -vector[2], vector[1]], [vector[2], 0, -vector[0]], [-vector[1], vector[0], 0]])
 
     def __init__(self, 
