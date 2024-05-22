@@ -7,6 +7,7 @@ from mmcv.transforms import BaseTransform, KeyMapper
 from mmengine.dataset import Compose
 from packaging import version as pv
 from scipy.stats import mode
+from scipy.spatial.transform import Rotation as R
 from torch.nn.modules.utils import _pair
 
 from mmaction.registry import TRANSFORMS
@@ -831,6 +832,8 @@ class BoneToAngle(BaseTransform):
     Methods:
         transform(results: Dict) -> Dict: Transform the bone information to angle information.
     """
+    def cross_product_matrix(vector):
+        return np.array([[0, -vector[2], vector[1]], [vector[2], 0, -vector[0]], [-vector[1], vector[0], 0]])
 
     def __init__(self, 
                  dataset: str = 'nturgb+d', 
@@ -870,13 +873,23 @@ class BoneToAngle(BaseTransform):
         for i, (b1, b2) in enumerate(self.bone_pairs):
             vec1 = bone[..., b1, :]
             vec2 = bone[..., b2, :]
-            dot_product = np.sum(vec1 * vec2, axis=-1)
-            norm_vec1 = np.linalg.norm(vec1, axis=-1)
-            norm_vec2 = np.linalg.norm(vec2, axis=-1)
-            cos_angle = dot_product / (norm_vec1 * norm_vec2 + 1e-8)
 
-            expanded_cos_angle = np.expand_dims(cos_angle, axis=-1)
-            angle[..., i, :] = np.arccos(np.clip(expanded_cos_angle, -1.0, 1.0))
+            # Normalize the vectors
+            vec1 /= np.linalg.norm(vec1, axis=-1, keepdims=True)
+            vec2 /= np.linalg.norm(vec2, axis=-1, keepdims=True)
+
+            # Calculate the cross product and dot product
+            cross = np.cross(vec1, vec2)
+            dot = np.sum(vec1 * vec2, axis=-1, keepdims=True)
+
+            # Calculate the rotation matrix
+            rotation_matrix = np.eye(3) + self.cross_product_matrix(cross) + self.cross_product_matrix(cross) @ self.cross_product_matrix(cross) * (1 - dot) / (np.linalg.norm(cross, axis=-1, keepdims=True) ** 2)
+
+            # Convert the rotation matrix to Euler angles
+            rotation = R.from_matrix(rotation_matrix)
+            euler_angles = rotation.as_euler('xyz')
+
+            angle[..., i, :] = euler_angles
 
         results[self.target] = angle
         return results
