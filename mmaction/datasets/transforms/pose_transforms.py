@@ -1039,7 +1039,7 @@ class GenSkeFeat(BaseTransform):
         if 'b' in feats or 'bm' in feats or 'bam' in feats or 'ba' in feats:
             ops.append(JointToBone(dataset=dataset, target='b'))
         if 'ba' in feats or 'bam' in feats:
-            ops.append(BoneToAngle(dataset=dataset, target='ba'))
+            ops.append(BoneToAngle(dataset=dataset, target='b'))
 
         ops.append(KeyMapper(remapping={'keypoint': 'j'}))
 
