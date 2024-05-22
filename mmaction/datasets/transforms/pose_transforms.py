@@ -1036,7 +1036,7 @@ class GenSkeFeat(BaseTransform):
         self.feats = feats
         self.axis = axis
         ops = []
-        if 'b' in feats or 'bm' in feats or 'bam' in feats:
+        if 'b' in feats or 'bm' in feats or 'bam' in feats or 'ba' in feats:
             ops.append(JointToBone(dataset=dataset, target='b'))
         if 'ba' in feats or 'bam' in feats:
             ops.append(BoneToAngle(dataset=dataset, target='ba'))
