@@ -868,6 +868,7 @@ class BoneToAngle(BaseTransform):
         """
         bone = results['b']
         M, T, V, C = bone.shape
+        print(M, T, V, C)
         angle = np.zeros((M, T, len(self.bone_pairs), 3), dtype=np.float32)
 
         for i, (b1, b2) in enumerate(self.bone_pairs):
@@ -877,7 +878,9 @@ class BoneToAngle(BaseTransform):
             # Normalize the vectors
             vec1 /= np.linalg.norm(vec1, axis=-1, keepdims=True)
             vec2 /= np.linalg.norm(vec2, axis=-1, keepdims=True)
-            print("Ineeee:", vec1, vec2)
+
+            vec1 = vec1[0][0]
+            vec2 = vec2[0][0]
 
             # Calculate the cross product and dot product
             cross = np.cross(vec1, vec2)
@@ -889,7 +892,7 @@ class BoneToAngle(BaseTransform):
             # Convert the rotation matrix to Euler angles
             rotation = R.from_matrix(rotation_matrix)
             euler_angles = rotation.as_euler('xyz')
-
+            euler_angles = np.nan_to_num(euler_angles)
             angle[..., i, :] = euler_angles
 
         results[self.target] = angle
