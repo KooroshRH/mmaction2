@@ -877,6 +877,7 @@ class BoneToAngle(BaseTransform):
             # Normalize the vectors
             vec1 /= np.linalg.norm(vec1, axis=-1, keepdims=True)
             vec2 /= np.linalg.norm(vec2, axis=-1, keepdims=True)
+            print("Ineeee:", vec1, vec2)
 
             # Calculate the cross product and dot product
             cross = np.cross(vec1, vec2)
