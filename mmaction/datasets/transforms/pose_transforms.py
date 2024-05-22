@@ -875,7 +875,8 @@ class BoneToAngle(BaseTransform):
             norm_vec2 = np.linalg.norm(vec2, axis=-1)
             cos_angle = dot_product / (norm_vec1 * norm_vec2 + 1e-8)
 
-            angle[..., i, :] = np.arccos(np.clip(cos_angle, -1.0, 1.0))
+            expanded_cos_angle = np.expand_dims(cos_angle, axis=-1)
+            angle[..., i, :] = np.arccos(np.clip(expanded_cos_angle, -1.0, 1.0))
 
         results[self.target] = angle
         return results
