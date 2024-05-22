@@ -878,7 +878,6 @@ class BoneToAngle(BaseTransform):
         """
         bone = results['b']
         M, T, V, C = bone.shape
-        print(M, T, V, C)
         angle = np.zeros((M, T, len(self.bone_pairs), 3), dtype=np.float32)
 
         for i, (b1, b2) in enumerate(self.bone_pairs):
@@ -1008,7 +1007,6 @@ class MergeSkeFeat(BaseTransform):
         for name in self.feat_list:
             feats.append(results.pop(name))
         feats = np.concatenate(feats, axis=self.axis)
-        print("Ineeeee:", feats.shape)
         results[self.target] = feats
         return results
 
