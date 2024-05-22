@@ -839,21 +839,31 @@ class BoneToAngle(BaseTransform):
                  dataset: str = 'nturgb+d', 
                  target: str = 'keypoint'):
         self.bone_pairs = [(1, 2),  # Neck and Right Shoulder
-                        (1, 4),  # Neck and Left Shoulder
-                        (2, 3),  # Right Shoulder and Right Elbow
-                        (4, 5),  # Left Shoulder and Left Elbow
-                        (3, 6),  # Right Elbow and Right Wrist
-                        (5, 7),  # Left Elbow and Left Wrist
-                        (2, 20), # Right Shoulder and Spine
-                        (4, 20), # Left Shoulder and Spine
-                        (20, 8), # Spine and Right Hip
-                        (20, 9), # Spine and Left Hip
-                        (8, 9),  # Right Hip and Right Knee
-                        (9, 10), # Left Hip and Left Knee
-                        (10, 11),# Right Knee and Right Ankle
-                        (11, 12),# Left Knee and Left Ankle
-                        (8, 11), # Right Hip and Right Foot
-                        (9, 12)] # Left Hip and Left Foot
+                            (1, 4),  # Neck and Left Shoulder
+                            (2, 3),  # Right Shoulder and Right Elbow
+                            (4, 5),  # Left Shoulder and Left Elbow
+                            (3, 6),  # Right Elbow and Right Wrist
+                            (5, 7),  # Left Elbow and Left Wrist
+                            (2, 20), # Right Shoulder and Spine
+                            (4, 20), # Left Shoulder and Spine
+                            (20, 8), # Spine and Right Hip
+                            (20, 9), # Spine and Left Hip
+                            (8, 9),  # Right Hip and Right Knee
+                            (9, 10), # Left Hip and Left Knee
+                            (10, 11),# Right Knee and Right Ankle
+                            (11, 12),# Left Knee and Left Ankle
+                            (8, 11), # Right Hip and Right Foot
+                            (9, 12), # Left Hip and Left Foot
+                            (1, 20), # Neck and Spine
+                            (2, 8),  # Right Shoulder and Right Hip
+                            (4, 9),  # Left Shoulder and Left Hip
+                            (8, 10), # Right Hip and Right Knee
+                            (9, 11), # Left Hip and Left Knee
+                            (10, 12),# Right Knee and Right Foot
+                            (11, 13),# Left Knee and Left Foot
+                            (3, 5),  # Right Elbow and Left Elbow
+                            (6, 7)   # Right Wrist and Left Wrist
+                        ]
         self.target = target
         self.dataset = dataset
 
