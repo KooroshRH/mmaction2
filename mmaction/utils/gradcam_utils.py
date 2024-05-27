@@ -123,11 +123,29 @@ class GradCAM:
             b_tg, c, _, _ = gradients.size()
             tg = b_tg // b
         else:
-            # source shape: [B, C', Tg, H', W']
-            _, c, tg, _, _ = gradients.size()
-            # target shape: [B, Tg, C', H', W']
-            gradients = gradients.permute(0, 2, 1, 3, 4)
-            activations = activations.permute(0, 2, 1, 3, 4)
+            grad = gradients.size()
+            # implement for transformer
+            if len(grad) == 3:
+                _, tg, c = grad
+
+                ########### You can edit feature_h and feature_w to support your transformer
+                feature_h = int(14)
+                feature_w = int(14)
+                ###########
+
+                tg /= (feature_h*feature_w)
+                tg = int(tg)
+                gradients = gradients.reshape(-1,tg,feature_h,feature_w,c)
+                gradients = gradients.permute(0,1,4,2,3)
+                activations = activations.reshape(-1,tg,feature_h,feature_w,c)
+                activations = activations.permute(0,1,4,2,3)
+            elif len(grad) == 5:
+                _, c, tg, _, _ = grad
+                # target shape: [B, Tg, C', H', W']
+                gradients = gradients.permute(0, 2, 1, 3, 4)
+                activations = activations.permute(0, 2, 1, 3, 4)
+            else:
+                raise NotImplementedError("Please check grad shape")
 
         # calculate & resize to [B, 1, T, H, W]
         weights = torch.mean(gradients.view(b, tg, c, -1), dim=3)
